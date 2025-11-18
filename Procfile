@@ -1,0 +1,1 @@
+web: python -m uvicorn DEX_Main:app --host 0.0.0.0 --port $PORT
