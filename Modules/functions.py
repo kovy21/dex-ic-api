@@ -42,8 +42,8 @@ def write_prompt_messages(messages, model_name = "gpt-5"): # Models can be chang
     response = chat.completions.create(**kwargs)
     return response.to_dict()["choices"][0]["message"]["content"]
 
-def get_prompt_answer(relationship_type, contact_frequency, reason_for_contact):
+def get_prompt_answer(user_name, contact_name, relationship_type, contact_frequency, reason_for_contact="N/A", hobbies="N/A", topics="N/A"):
     """Get response from GPT 5."""
-    messages = base_prompt(relationship_type, contact_frequency, reason_for_contact)
+    messages = base_prompt(user_name, contact_name, relationship_type, contact_frequency, reason_for_contact, hobbies, topics)
     answer = write_prompt_messages(messages)
     return answer
