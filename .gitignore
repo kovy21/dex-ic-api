@@ -1,0 +1,5 @@
+# Ignore cache and secrets
+__pycache__
+Modules/__pycache__
+.idea
+.env
