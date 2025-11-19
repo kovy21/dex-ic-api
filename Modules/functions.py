@@ -15,7 +15,8 @@ os.environ['AICORE_RESOURCE_GROUP'] = AICORE_RESOURCE_GROUP
 
 from gen_ai_hub.proxy.native.openai import chat
 
-def base_prompt(relationship_type, contact_frequency, reason_for_contact):
+def base_prompt(user_name, contact_name, relationship_type, contact_frequency, 
+                reason_for_contact="N/A", hobbies="N/A", topics="N/A"):
     messages = [
         {
             "role": "user",
@@ -23,7 +24,8 @@ def base_prompt(relationship_type, contact_frequency, reason_for_contact):
                 {
                     "type": "text",
                     "text": f"You are an app developer tasked with creating question suggestions (in Czech) that help young people re-connect with their elderly relatives." +
-                            f"The relationship type is: {relationship_type}. The suggested contact frequency is: {contact_frequency}. The reason for contact is: {reason_for_contact}." +
+                            f"The name of the user is: {user_name} and the name of the contact is: {contact_name}. The relationship type is: {relationship_type}. The current contact frequency is: {contact_frequency}." + 
+                            f"Then there are non-mandatory parameters, such as... the reason for contact: {reason_for_contact}, the hobbies of the contacted person: {hobbies}, most often discussed topics between the user and the contact: {topics}" +
                             f"Based on this information, generate a JSON containing one meaningful, driving question that should help them engange and re-connect and three additional, supplementary question to further engage in the conversation." +
                             f"The JSON should have the following structure: " +
                             f"{{'main_question': '...', 'additional_questions': ['...', '...', '...']}}. Do not include any line breaks." +
