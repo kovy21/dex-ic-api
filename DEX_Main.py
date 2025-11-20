@@ -1,10 +1,19 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.openapi.docs import get_swagger_ui_html
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
 from Modules.functions import get_prompt_answer
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],         
+    allow_credentials=True,
+    allow_methods=["*"],         
+    allow_headers=["*"],          
+)
 
 @app.post("/questions_prompt/")
 async def post_question_prompt(user_name: str, contact_name: str, relationship_type: str, contact_frequency: str, # Mandatory parameters
