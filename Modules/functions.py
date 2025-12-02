@@ -15,7 +15,7 @@ os.environ['AICORE_RESOURCE_GROUP'] = AICORE_RESOURCE_GROUP
 
 from gen_ai_hub.proxy.native.openai import chat
 
-def base_prompt(user_name, contact_name, relationship_type, contact_frequency, 
+def base_prompt(user_name, contact_name, relationship_type, contact_frequency="N/A", 
                 reason_for_contact="N/A", hobbies="N/A", topics="N/A"):
     messages = [
         {
@@ -36,14 +36,14 @@ def base_prompt(user_name, contact_name, relationship_type, contact_frequency,
     ]
     return messages
 
-def write_prompt_messages(messages, model_name = "gpt-5"): # Models can be changed here
+def write_prompt_messages(messages, model_name = "gpt-5-mini"): # Models can be changed here
     """Send messages to the model and return the response."""
     kwargs = dict(model_name=model_name, messages=messages)
     response = chat.completions.create(**kwargs)
     return response.to_dict()["choices"][0]["message"]["content"]
 
 def get_prompt_answer(user_name, contact_name, relationship_type, contact_frequency, reason_for_contact="N/A", hobbies="N/A", topics="N/A"):
-    """Get response from GPT 5."""
+    """Get response from GPT 5 Mini."""
     messages = base_prompt(user_name, contact_name, relationship_type, contact_frequency, reason_for_contact, hobbies, topics)
     answer = write_prompt_messages(messages)
     return answer

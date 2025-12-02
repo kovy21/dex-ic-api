@@ -16,8 +16,8 @@ app.add_middleware(
 )
 
 @app.post("/questions_prompt/")
-async def post_question_prompt(user_name: str, contact_name: str, relationship_type: str, contact_frequency: str, # Mandatory parameters
-                               reason_for_contact: Optional[str] = "N/A", hobbies: Optional[str] = "N/A", topics: Optional[str] = "N/A"): # Optional parameters can be added with default values
+async def post_question_prompt(user_name: str, contact_name: str, relationship_type: str, # Mandatory parameters
+                               contact_frequency: Optional[str] = "N/A", reason_for_contact: Optional[str] = "N/A", hobbies: Optional[str] = "N/A", topics: Optional[str] = "N/A"): # Optional parameters can be added with default values
 
     try:
         prompt_result = get_prompt_answer(user_name, contact_name, relationship_type, contact_frequency, reason_for_contact, hobbies, topics)
